@@ -172,8 +172,35 @@ def admin_dashboard():
 
 # UPDATE COMPLAINT
 @app.route("/update-complaint/<int:complaint_id>",
-           methods=["POST"])
+           methods=["GET", "POST"])
 def update_complaint(complaint_id):
+
+    print("UPDATE ROUTE HIT")
+
+    return f"Complaint ID = {complaint_id}"
+def update_complaint(complaint_id):
+
+    print("UPDATE ROUTE HIT")
+
+    print(request.form)
+
+    complaint = Complaint.query.get_or_404(
+        complaint_id
+    )
+
+    complaint.status = request.form.get(
+        "status"
+    )
+
+    complaint.assigned_to = request.form.get(
+        "assigned_to"
+    )
+
+    db.session.commit()
+
+    print("UPDATED SUCCESSFULLY")
+
+    return redirect("/admin")
 
     complaint = Complaint.query.get_or_404(
         complaint_id
@@ -263,7 +290,9 @@ def export_csv():
 def logout():
 
     return redirect("/")
-
+@app.route("/test")
+def test():
+    return "TEST ROUTE WORKING"
 
 with app.app_context():
     db.create_all()

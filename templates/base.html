@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>{{ title if title else "College Complaint Management System" }}</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <style>
+
+        body{
+            margin:0;
+            background:#f5f7fb;
+            font-family:Arial, sans-serif;
+        }
+
+        .sidebar{
+            width:250px;
+            height:100vh;
+            position:fixed;
+            left:0;
+            top:0;
+            background:#212529;
+            color:white;
+            overflow-y:auto;
+        }
+
+        .sidebar-header{
+            padding:20px;
+            text-align:center;
+            border-bottom:1px solid #343a40;
+        }
+
+        .sidebar a{
+            display:block;
+            color:white;
+            text-decoration:none;
+            padding:15px 20px;
+        }
+
+        .sidebar a:hover{
+            background:#343a40;
+        }
+
+        .main-content{
+            margin-left:250px;
+            padding:30px;
+        }
+
+        .card{
+            border:none;
+            border-radius:12px;
+            box-shadow:0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .stat-card{
+            text-align:center;
+            padding:20px;
+        }
+
+        .stat-number{
+            font-size:30px;
+            font-weight:bold;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+    <div class="sidebar-header">
+
+        <h4>CCMS</h4>
+
+        <small>
+            Complaint Management
+        </small>
+
+    </div>
+
+    <a href="/dashboard">
+        <i class="bi bi-speedometer2"></i>
+        Student Dashboard
+    </a>
+
+    <a href="/submit-complaint">
+        <i class="bi bi-plus-circle"></i>
+        Submit Complaint
+    </a>
+
+    <a href="/admin">
+        <i class="bi bi-shield-lock"></i>
+        Admin Dashboard
+    </a>
+
+    <a href="/staff">
+        <i class="bi bi-person-workspace"></i>
+        Staff Dashboard
+    </a>
+
+    <a href="/export-csv">
+        <i class="bi bi-download"></i>
+        Export CSV
+    </a>
+
+    <a href="/logout">
+        <i class="bi bi-box-arrow-right"></i>
+        Logout
+    </a>
+
+</div>
+
+<div class="main-content">
+
+    {% block content %}
+    {% endblock %}
+
+</div>
+
+</body>
+</html>
