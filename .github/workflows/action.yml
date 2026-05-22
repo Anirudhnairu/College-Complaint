@@ -12,29 +12,30 @@ jobs:
 
     steps:
 
-    - name: Checkout Code
-      uses: actions/checkout@v4
+      - name: Checkout Repository
+        uses: actions/checkout@v4
 
-    - name: Setup Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: "3.13"
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
 
-    - name: Install Dependencies
-      run: |
-        pip install -r requirements.txt
-        pip install pyinstaller
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pyinstaller
 
-    - name: Build EXE
-      run: |
-        pyinstaller ^
-        --onefile ^
-        --add-data "templates;templates" ^
-        --add-data "static;static" ^
-        app.py
+      - name: Build EXE
+        run: |
+          pyinstaller --onefile --add-data "templates;templates" --add-data "static;static" app.py
 
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: complaint-management-exe
-        path: dist/*
+      - name: Show Dist Folder
+        run: |
+          dir dist
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: CollegeComplaint-Windows-EXE
+          path: dist/*
